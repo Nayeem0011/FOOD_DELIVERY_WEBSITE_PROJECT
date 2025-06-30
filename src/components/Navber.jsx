@@ -1,9 +1,27 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { IoFastFoodOutline } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
 import { GiShoppingCart } from "react-icons/gi";
+import { dataContext } from '../context/UserContext';
+import { food_items } from '../food';
+import { useSelector } from 'react-redux';
 
 const Navber = () => {
+  let {input, setInput, category, setCategory, showCard, setShowCard} = useContext(dataContext)
+
+  useEffect(()=>{
+    let newList=food_items.filter((item)=>item.food_name.
+    includes(input)||item.food_name.toLowerCase().includes(input))
+    setCategory(newList)
+  },[input])
+
+  // useEffect(() => {
+  //   const newList = food_items.filter(item =>
+  //     item.food_name.toLowerCase().includes(input.toLowerCase()));
+  //     setCategory(newList);
+  // }, [input]);
+
+    let items = useSelector(state=>state.cart)
 
   return (
     <Fragment>
@@ -18,17 +36,21 @@ const Navber = () => {
            </div>
 
             {/* Search Box */}
-            <form className="w-[60%] max-w-[500px] h-[55px] bg-white border border-green-100 hover:shadow-lg transition-all duration-300 ease-in-out flex items-center px-4 gap-3 rounded-full">
+            <form className="w-[60%] max-w-[500px] h-[55px] bg-white border border-green-100 hover:shadow-lg transition-all duration-300 ease-in-out flex items-center px-4 gap-3 rounded-full"
+            onSubmit={(e)=>e.preventDefault()}>
                 <IoMdSearch className="text-green-500 w-[22px] h-[22px]" />
-                <input type="text" placeholder="Search delicious food..." className="w-full outline-none text-[18px] placeholder:text-gray-400"/>
+                <input type="text" placeholder="Search delicious food..." className="w-full outline-none text-[18px] placeholder:text-gray-400"
+                onChange={(e)=>setInput(e.target.value)} value={input}/>
            </form>
 
            {/* Cart */}
-           <div className="relative">
+           <div className="relative"onClick={()=>{
+            setShowCard(true)
+           }}>
             <div className="w-[60px] h-[60px] bg-white flex justify-center items-center rounded-full shadow-lg border border-green-100 cursor-pointer">
                 <GiShoppingCart className="w-[28px] h-[28px] text-green-500" />
            </div>
-           <span className="absolute -top-1 -right-1 bg-green-500 text-white text-sm w-[20px] h-[20px] flex justify-center items-center rounded-full font-semibold">0</span>
+           <span className="absolute -top-1 -right-1 bg-green-500 text-white text-sm w-[20px] h-[20px] flex justify-center items-center rounded-full font-semibold">{items.length}</span>
          </div>
 
     </div>
