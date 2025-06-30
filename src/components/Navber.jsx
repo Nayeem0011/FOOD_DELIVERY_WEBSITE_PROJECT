@@ -4,6 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 import { GiShoppingCart } from "react-icons/gi";
 
 const Navber = () => {
+
   return (
     <Fragment>
         <div className="w-full h-[100px] flex justify-between items-center px-6 md:px-10 shadow-md bg-gradient-to-r from-white via-green-50 to-white">

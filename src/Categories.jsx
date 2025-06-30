@@ -68,32 +68,32 @@ const Categories = [
   },
   {
     id: 2,
-    name: "Breakfast",
+    name: "breakfast",
     icon: <MdOutlineFreeBreakfast className="w-[60px] h-[60px] text-green-600" />,
   },
   {
     id: 3,
-    name: "Soups",
+    name: "soups",
     icon: <LuSoup className="w-[60px] h-[60px] text-green-600" />,
   },
   {
     id: 4,
-    name: "Pasta",
+    name: "pasta",
     icon: <CiBowlNoodles className="w-[60px] h-[60px] text-green-600" />,
   },
   {
     id: 5,
-    name: "Main_course",
+    name: "main_course",
     icon: <MdOutlineFoodBank className="w-[60px] h-[60px] text-green-600" />,
   },
   {
     id: 6,
-    name: "Pizza",
+    name: "pizza",
     icon: <GiFullPizza className="w-[60px] h-[60px] text-green-600" />,
   },
   {
     id: 7,
-    name: "Burger",
+    name: "burger",
     icon: <GiHamburger className="w-[60px] h-[60px] text-green-600" />,
   },
 ];
