@@ -1,120 +1,73 @@
-// import React, { useState } from 'react';
-// import { signInWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../firebase'; // 🔁 Firebase config path
+import { Fragment } from 'react'
+import { FaFacebookF, FaApple } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
+import { RxCross2 } from "react-icons/rx"
+import { Link } from 'react-router-dom'
 
-// const SignInForm = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await signInWithEmailAndPassword(auth, email, password);
-//       alert('Login successful!');
-//     } catch (err) {
-//       alert(err.message);
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-//       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-//         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
-//         <form onSubmit={handleLogin} className="flex flex-col gap-4">
-//           <input
-//             type="email"
-//             placeholder="Email"
-//             className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-green-400"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             required
-//           />
-//           <input
-//             type="password"
-//             placeholder="Password"
-//             className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:ring-2 focus:ring-green-400"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             required
-//           />
-//           <button
-//             type="submit"
-//             className="bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
-//           >
-//             Sign In
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SignInForm;
-
-import React from 'react';
-import { FaFacebook, FaGoogle, FaApple } from 'react-icons/fa';
-import { RxCross2 } from 'react-icons/rx';
-import { Link } from 'react-router-dom';
-
-const LoginModal = ({ onClose }) => {
+const Login = () => {
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex justify-center items-center">
-      <div className="bg-white w-[90%] max-w-md rounded-xl shadow-xl p-6 relative">
-        {/* Close Button */}
-        <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-red-500"
-          onClick={onClose}
-        >
-          <Link to={"/"}><RxCross2 size={22} /></Link>
-        </button>
+    <Fragment>
+      <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div className="bg-white w-[90%] sm:w-[400px] rounded-2xl p-6 shadow-lg relative">
+          
+          {/* Close Icon */}
+          <button className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">
+            <Link to={"/"}><RxCross2 /></Link>
+          </button>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-center text-green-600 mb-2">
-          Welcome Back!
-        </h2>
-        <p className="text-sm text-center text-gray-500 mb-6">
-          Log in to continue
-        </p>
+          {/* Header */}
+          <h2 className="text-2xl font-bold text-green-500 mb-2">Welcome!</h2>
+          <p className="text-gray-500 text-sm mb-5">Sign up or log in to continue</p>
 
-        {/* Inputs */}
-        <div className="flex flex-col gap-4">
           <input
             type="email"
+            name='email'
+            id='email'
             placeholder="Email"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
-          />
-          <input
+            className="w-full mb-3 px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
+
+            <input
             type="password"
+            name='password'
+            id='password'
             placeholder="Password"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
-          />
-          <button className="bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-semibold transition">
-            Log In
-          </button>
-        </div>
+            className="w-full mb-3 px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
 
-        {/* Or line */}
-        <div className="my-5 flex items-center">
-          <div className="flex-grow h-px bg-gray-300" />
-          <span className="px-3 text-gray-400 text-sm">or</span>
-          <div className="flex-grow h-px bg-gray-300" />
-        </div>
+           {/* Log in */}
+          <button className="mb-4 w-full text-white py-2 rounded-md font-semibold transition bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 hover:text-gray-100  duration-300 shadow-md hover:shadow-lg">Log in</button>
 
-        {/* Social Logins */}
-        <div className="flex flex-col gap-3">
-          <button className="flex items-center justify-center gap-2 border py-2 rounded-md hover:bg-gray-100 transition">
-            <FaFacebook className="text-blue-600" /> Continue with Facebook
+           {/* Or */}
+          <div className="flex items-center gap-3 mb-3">
+            <div className="flex-grow h-px bg-gray-300"></div>
+            <span className="text-gray-400 text-sm">or</span>
+            <div className="flex-grow h-px bg-gray-300"></div>
+          </div>
+
+           {/* Facebook */}
+          <button className="w-full bg-blue-600 text-white py-2 rounded-md flex items-center justify-center gap-2 mb-3 hover:bg-blue-500">
+            <FaFacebookF /> Continue with Facebook
           </button>
-          <button className="flex items-center justify-center gap-2 border py-2 rounded-md hover:bg-gray-100 transition">
-            <FaGoogle className="text-red-500" /> Continue with Google
+
+           {/* Google */}
+          <button className="w-full border text-gray-700 py-2 rounded-md flex items-center justify-center gap-2 mb-3 hover:bg-slate-100">
+            <FcGoogle size={20}/> Continue with Google
           </button>
-          <button className="flex items-center justify-center gap-2 border py-2 rounded-md hover:bg-gray-100 transition">
-            <FaApple className="text-black" /> Continue with Apple
+
+           {/* Apple */}
+          <button className="w-full bg-black text-white py-2 rounded-md flex items-center justify-center gap-2 mb-5 hover:bg-gray-900">
+            <FaApple /> Continue with Apple
           </button>
+
+           {/* Footer Text */}
+          <Link to={"/signup"}>
+          <p className="font-bold text-sm text-green-500 mt-6 hover:text-blue-600 cursor-pointer flex justify-center">
+            Don't have an account? Sing Up here!
+          </p>
+          </Link>
         </div>
       </div>
-    </div>
-  );
-};
+    </Fragment>
+  )
+}
 
-export default LoginModal;
+export default Login

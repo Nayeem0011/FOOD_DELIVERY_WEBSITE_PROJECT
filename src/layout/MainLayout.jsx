@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import Homepage from '../pages/Homepage'
 import { Outlet } from 'react-router-dom'
 import NavberLoginSignUP from '../components/NavberLoginSignUP'
-import LoginModal from '../pages/Login'
 
 const MainLayout = () => {
   return (

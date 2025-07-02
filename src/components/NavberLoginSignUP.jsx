@@ -22,8 +22,13 @@ const NavberLoginSignUP = () => {
 
            {/* Mobile Icons */}
           <div className="flex md:hidden items-center gap-2">
+            <Link to={"login"}>
             <FaSignInAlt className="w-6 h-6 text-green-500 cursor-pointer" title="Login" />
+            </Link>
+            
+            <Link to={"signup"}>
             <FaUserPlus className="w-6 h-6 text-green-500 cursor-pointer" title="Signup" />
+            </Link>
           </div>
     </Fragment>
   )
