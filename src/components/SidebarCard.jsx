@@ -48,7 +48,7 @@
 import React from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
-import { RemoveItem } from '../redux/cartSlice';
+import { DecrementQty, IncrementQty, RemoveItem } from '../redux/cartSlice';
 
 const SidebarCard = ({ name, id, price, image, qty }) => {
   const dispatch = useDispatch();
@@ -69,9 +69,15 @@ const SidebarCard = ({ name, id, price, image, qty }) => {
 
                 {/* Quantity Controller */}
                 <div className="flex w-[110px] h-[40px] rounded-full border border-green-400 shadow overflow-hidden font-semibold text-green-600 text-sm md:text-base">
-                    <button className="w-[30%] bg-white hover:bg-green-100 flex justify-center items-center">-</button>
+                    <button className="w-[30%] bg-white hover:bg-green-100 flex justify-center items-center"
+                    onClick={()=>{
+                        qty>1?dispatch(DecrementQty(id)):1
+                    }}>-</button>
                     <div className="w-[40%] bg-gray-100 flex justify-center items-center">{qty}</div>
-                    <button className="w-[30%] bg-white hover:bg-green-100 flex justify-center items-center">+</button>
+                    <button className="w-[30%] bg-white hover:bg-green-100 flex justify-center items-center"
+                    onClick={()=>{
+                        dispatch(IncrementQty(id))
+                    }}>+</button>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cartSlice';
+import toast from 'react-hot-toast';
 
 const MainCard = ({ name, image, id, price, type }) => {
   let dispatch = useDispatch()
@@ -23,19 +24,21 @@ const MainCard = ({ name, image, id, price, type }) => {
     
             {/* Price & Type */}
             <div className="flex justify-between items-center mt-2">
-                <span className="text-lg font-bold text-green-600">Rs {price} /-</span>
-                <span className="flex items-center gap-2 text-green-600 font-semibold">
-                    {type === "veg" ? <LuLeafyGreen /> : <GiChickenOven />}
+              <span className="text-lg font-bold text-green-600">Rs {price} /-</span>
+              <span className="flex items-center gap-2 text-green-600 font-semibold">
+                {type === "veg" ? <LuLeafyGreen /> : <GiChickenOven />}
                 <span className="capitalize">{type}</span>
-               </span>
-            </div>
+              </span>
+              </div>
     
-           {/* Button */}
+             {/* Button */}
             <button className="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-500 hover:text-gray-100 transition duration-300 shadow-md hover:shadow-lg"
-            onClick={()=>dispatch(AddItem({id:id, name:name, price:price, image:image, qty:1}))}>
+             onClick={() => {
+             dispatch(AddItem({ id: id, name: name, price: price, image: image, qty: 1 }));
+             toast.success(`${name} added to dish!`);}}>
               Add to Dish
             </button>
-           </div>
+          </div>
     </div>
   )
 }

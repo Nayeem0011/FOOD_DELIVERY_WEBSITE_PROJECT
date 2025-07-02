@@ -7,6 +7,8 @@ import { dataContext } from '../context/UserContext'
 import { RxCross2 } from "react-icons/rx";
 import SidebarCard from '../components/SidebarCard'
 import { useSelector } from 'react-redux'
+import { MdRestaurantMenu } from "react-icons/md";
+
 
 const Homepage = () => {
   let { category, setCategory, input, showCard, setShowCard } = useContext(dataContext)
@@ -23,7 +25,7 @@ const Homepage = () => {
 
   let items = useSelector(state=>state.cart)
 
-  let sumTotal = items.reduce((total, item)=>total+item.price,0)
+  let sumTotal = items.reduce((total, item)=>total+item.qty*item.price,0)
   let deliveryFee=20;
   let taxes=sumTotal*0.5/100;
   let total = Math.floor(sumTotal+deliveryFee+taxes)
@@ -53,7 +55,8 @@ const Homepage = () => {
 
 
         <div className='w-full flex flex-wrap gap-5 px-5 justify-center items-center pt-8 pb-8'>
-          {category.map((item)=>(
+          {category.length>1?
+          category.map((item)=>(
             <MainCard
             key={item.id}
             name={item.food_name}
@@ -61,7 +64,13 @@ const Homepage = () => {
             price={item.price}
             id={item.id}
             type={item.food_type}/>
-           ))}
+           )):<div className="w-full h-[70vh] flex items-center justify-center">
+                <div className="bg-white rounded-xl shadow-xl p-8 flex flex-col items-center gap-4 max-w-md text-center">
+                  <MdRestaurantMenu className="text-green-500 text-5xl" />
+                  <h2 className="text-2xl font-bold text-gray-700">That's not on the menu yet!</h2>
+                  <p className="text-gray-500">Try searching for something else or check out the categories below.</p>
+                </div>
+              </div>}
         </div>
         
 
@@ -123,7 +132,8 @@ const Homepage = () => {
         {/* Backdrop Overlay */}
         {showCard && (
           <div onClick={() => setShowCard(false)}
-          className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40">       </div>
+          className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40">
+          </div>
         )}
 
         {/* Sidebar */}
