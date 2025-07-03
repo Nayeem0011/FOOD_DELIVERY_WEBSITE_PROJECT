@@ -1,10 +1,50 @@
-import { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Fragment, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx"
+import { auth } from '../utils/firebase'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+  // const [loading, setLoading] = useState(false)
+  const [data, setData] = useState({})
+  const navigate = useNavigate()
+
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+
+  const changeHandler = (event) =>{
+    const{name, value} = event.target
+    setData({...data, [name]:value})
+  }
+
+  
+  const submitHandler = async (event) =>{
+    event.preventDefault()
+    console.log(data)
+    const response = await createUserWithEmailAndPassword(data.email, data.password)
+
+    if (response) {
+      toast.success("Account created successfully!")
+      // navigate("/")
+      } else if (error) {
+        toast.error(error.message || "Failed to create account. Please try again.")
+    }
+    // if(response.user.accessToken){
+    //   toast.success("Account created successfully!")
+    // }else {
+    //   toast.error("Failed to create account. Pleace try again.")
+    // }
+  }
+
   return (
     <Fragment>
+      <form  onSubmit={submitHandler}>
       <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
         <div className="bg-white w-[90%] sm:w-[400px] rounded-2xl p-6 shadow-lg relative">
 
@@ -24,28 +64,36 @@ const SignUp = () => {
             name='name'
             id='name'
             placeholder="Full Name"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
+            required
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
+            onChange={changeHandler}/>
             
             <input
             type="email"
             name='email'
             id='email'
             placeholder="Email"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
+            required
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
+            onChange={changeHandler}/>
 
             <input
             type="password"
             name='password'
             id='password'
             placeholder="Password"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
+            required
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
+            onChange={changeHandler}/>
 
             <input 
             type="text"
             name='phoneNo' 
             id='phoneNo'
             placeholder="Phone Number" 
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
+            required
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"
+            onChange={changeHandler}/>
 
             <button className="w-full text-white py-2 rounded-md font-semibold transition bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 hover:text-gray-100  duration-300 shadow-md hover:shadow-lg">
               Sign Up
@@ -66,6 +114,7 @@ const SignUp = () => {
           </p>
         </div>
       </div>
+      </form>
     </Fragment>
   )
 }

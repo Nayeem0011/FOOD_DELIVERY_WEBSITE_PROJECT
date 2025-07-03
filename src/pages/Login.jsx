@@ -24,6 +24,7 @@ const Login = () => {
             name='email'
             id='email'
             placeholder="Email"
+            required
             className="w-full mb-3 px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
 
             <input
@@ -31,6 +32,7 @@ const Login = () => {
             name='password'
             id='password'
             placeholder="Password"
+            required
             className="w-full mb-3 px-4 py-2 border border-gray-300 rounded-md focus:outline-green-400"/>
 
            {/* Log in */}

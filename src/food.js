@@ -27,12 +27,12 @@ import image25 from "./assets/image25.avif";
 import image26 from './assets/image26.avif';
 import image27 from './assets/image27.avif';
 import image28 from './assets/image28.avif';
-import image29 from './assets/image29.avif'
-import image30 from './assets/image30.avif'
-import image31 from './assets/image31.avif'
-import image32 from './assets/image32.avif'
-import image33 from './assets/image33.avif'
-import image34 from './assets/image34.avif'
+import image29 from './assets/image29.avif';
+import image30 from './assets/image30.avif';
+import image31 from './assets/image31.avif';
+import image32 from './assets/image32.avif';
+import image33 from './assets/image33.avif';
+import image34 from './assets/image34.avif';
 
 
 
