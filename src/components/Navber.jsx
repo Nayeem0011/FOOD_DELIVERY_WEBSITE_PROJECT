@@ -8,14 +8,14 @@ import { useSelector } from 'react-redux';
 import NavberLoginSignUP from './NavberLoginSignUP';
 
 const Navber = () => {
-  const { input, setInput, category, setCategory, showCard, setShowCard } = useContext(dataContext);
+  const { input, setInput, setCategory, setShowCard } = useContext(dataContext);
 
   useEffect(() => {
     const newList = food_items.filter((item) =>
       item.food_name.toLowerCase().includes(input.toLowerCase())
     );
     setCategory(newList);
-  }, [input]);
+  }, [input, food_items]);
 
   const items = useSelector(state => state.cart);
 
@@ -41,8 +41,7 @@ const Navber = () => {
             placeholder="Search delicious food..."
             className="w-full outline-none text-[18px] placeholder:text-gray-400"
             onChange={(e) => setInput(e.target.value)}
-            value={input}
-          />
+            value={input}/>
         </form>
 
          {/* Right Section */}

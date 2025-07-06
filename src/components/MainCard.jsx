@@ -24,7 +24,7 @@ const MainCard = ({ name, image, id, price, type }) => {
     
             {/* Price & Type */}
             <div className="flex justify-between items-center mt-2">
-              <span className="text-lg font-bold text-green-600">Rs {price} /-</span>
+              <span className="text-lg font-bold text-green-600">Tk {price} /-</span>
               <span className="flex items-center gap-2 text-green-600 font-semibold">
                 {type === "veg" ? <LuLeafyGreen /> : <GiChickenOven />}
                 <span className="capitalize">{type}</span>

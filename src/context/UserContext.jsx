@@ -1,4 +1,4 @@
-import React, { createContext, Fragment, useState } from 'react'
+import { createContext, Fragment, useState } from 'react'
 import { food_items } from '../food'
 
 export const dataContext = createContext()

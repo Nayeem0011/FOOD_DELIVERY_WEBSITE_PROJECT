@@ -2,17 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
-import Homepage from "../pages/Homepage";
+import OrderSection from "../components/common/OrderSection";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      {
-        path: "",
-        element: <Homepage />,
-      },
       {
         path: "signup",
         element: <SignUp />,
@@ -23,5 +20,9 @@ export const routes = createBrowserRouter([
       },
       
     ],
+  },
+  {
+    path: "ordersection",
+    element: <PrivateRoute><OrderSection/></PrivateRoute>
   },
 ]);
